@@ -1,45 +1,35 @@
-#Abstraksi Modul 4
-# Wajib mengimpor modul ini untuk membuat Abstraksi di Python
-from abc import ABC, abstractmethod
+class Mahasiswa:
+    def __init__(self, nama, nim):
+        self.__nama = nama
+        self.__nim = nim
 
-# 1. CLASS ABSTRAK (Kerangka Dasar / Konsep)
-class Hewan(ABC): 
-    def __init__(self, nama):
-        self.nama = nama
+    def getNama(self):
+        return self.__nama
+    
+    def getNim(self):
+        return self.__nim
+    
+    def setNama(self, nama):
+        self.__nama = nama
 
-    # 2. METHOD ABSTRAK (Aturan wajib yang harus diikuti anak-anaknya)
-    @abstractmethod
-    def bersuara(self):
-        pass # Isinya dibiarkan kosong karena akan diisi oleh class anak
-        
-    # Method biasa (Boleh ada di dalam class abstrak)
-    def info(self):
-        print(f"Hewan ini bernama {self.nama}.")
+    def setNim(self, nim):
+        self.__nim = nim
 
-# 3. CLASS ANAK 1
-class Anjing(Hewan):
-    # Wajib membuat ulang method bersuara()!
-    def bersuara(self):
-        return "Woof! Woof!"
+daftar_mahasiswa = []
 
-# 4. CLASS ANAK 2
-class Kucing(Hewan):
-    # Wajib membuat ulang method bersuara()!
-    def bersuara(self):
-        return "Meowww!"
+jumlah = int(input("Masukkan Jumlah Mahasiswa: "))
 
-# --- MARI KITA UJI ---
+for i in range(jumlah):
+    print(f"Data ke-{i+1}")
+    nama = input("Masukkan Nama: ")
+    nim = input("Masukkan NIM: ")
+    
+    mhs_baru = Mahasiswa(nama, nim)
+    daftar_mahasiswa.append(mhs_baru)
 
-# COBA BUKA KOMENTAR DI BAWAH INI, PASTI PROGRAM AKAN ERROR!
-# hewan_gaib = Hewan("Sesuatu") 
+print("HASIL DATA MAHASISWA")
+for mhs in daftar_mahasiswa:
+    print(f"Nama: {mhs.getNama()} | NIM: {mhs.getNim()}")
 
-# Ini yang benar (Mencetak dari class anak yang wujudnya jelas)
-anjing_saya = Anjing("Max")
-anjing_saya.info()
-print("Suaranya:", anjing_saya.bersuara())
-
-print("-" * 20)
-
-kucing_saya = Kucing("Oyen")
 kucing_saya.info()
 print("Suaranya:", kucing_saya.bersuara())
